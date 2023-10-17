@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "./mmpose",
+        "./SkeltonPoseTool"
     ],
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
