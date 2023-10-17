@@ -28,7 +28,6 @@ def run(img_path: str):
     pose_model = init_model(POSE_CONFIG, POSE_CHECKPOINT, device=device)
     det_model = init_detector(DET_CONFIG, DET_CHECKPOINT, device=device)
 
-    img_path = "examples/img1.jpg"
     img = cv2.imread(img_path)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -81,8 +80,6 @@ def run(img_path: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-i", "--input_path", type=str, default="examples/img1.jpg"
-    )
+    parser.add_argument("-i", "--input_path", type=str)
     args = parser.parse_args()
     run(args.input_path)
