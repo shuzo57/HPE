@@ -18,7 +18,7 @@ class PoseEstimator:
 
     def predict(self, img: Union[str, np.ndarray]) -> list:
         if isinstance(img, str):
-            img = self.read_img(img)
+            img = self._read_img(img)
 
         # object detection
         scope = self.detector.cfg.get("default_scope", "mmdet")
@@ -45,7 +45,7 @@ class PoseEstimator:
     def get_visibles(self, mmpose_result: PoseDataSample) -> np.ndarray:
         return mmpose_result.pred_instances.visibles[0]
 
-    def read_img(self, img_path: str) -> np.ndarray:
+    def _read_img(self, img_path: str) -> np.ndarray:
         img = cv2.imread(img_path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         return img
