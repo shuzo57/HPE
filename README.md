@@ -59,6 +59,15 @@ python3 mmpose/demo/image_demo.py \
     --draw-heatmap
 ```
 
+```bash
+python3 mmpose/demo/image_demo.py \
+    examples/img3.jpg \
+    hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192.py \
+    hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192-0e67c616_20220913.pth \
+    --out-file examples/img3_result.jpg \
+    --draw-heatmap
+```
+
 ### Run Python Script
 ```bash
 Python3 first_demo.py
@@ -75,6 +84,7 @@ mim download mmdet --config rtmdet_m_8xb32-300e_coco --dest checkpoints
 ```bash
 python3 second_demo.py -i examples/img1.jpg
 python3 second_demo.py -i examples/img2.png
+python3 second_demo.py -i examples/img3.jpg
 ```
 
 ## MMPose Tutorial
