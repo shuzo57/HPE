@@ -50,13 +50,14 @@ def run(img_path: str):
     )
 
     # extract person information from detection results
-    person_results = process_mmdet_results(mmdet_results)
+    person_boxes = process_mmdet_results(mmdet_results)
 
     # pose estimation
     scope = pose_model.cfg.get("default_scope", "mmpose")
     if scope is not None:
         init_default_scope(scope)
-    mmpose_results = inference_topdown(pose_model, img_path, person_results)
+    mmpose_results = inference_topdown(pose_model, img_path, person_boxes)
+    print(type(mmpose_results))
     """
     Please chcek the output of warning:
     mmengine - WARNING - The current default scope "mmdet" is not "mmpose",
