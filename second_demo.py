@@ -57,7 +57,6 @@ def run(img_path: str):
     if scope is not None:
         init_default_scope(scope)
     mmpose_results = inference_topdown(pose_model, img_path, person_boxes)
-    print(type(mmpose_results))
     """
     Please chcek the output of warning:
     mmengine - WARNING - The current default scope "mmdet" is not "mmpose",
