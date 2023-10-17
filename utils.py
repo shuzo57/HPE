@@ -12,7 +12,7 @@ from mmpose.structures import merge_data_samples
 def process_mmdet_results(
     mmdet_results: DetDataSample,
     person_id: int = 0,
-    person_threshold: float = 0.8,
+    person_threshold: float = 0.65,
 ) -> np.ndarray:
     pred_instances = mmdet_results.pred_instances
 
