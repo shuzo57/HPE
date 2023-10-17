@@ -4,6 +4,7 @@ import cv2
 import torch
 from mmdet.apis import inference_detector, init_detector
 from mmdet.visualization import DetLocalVisualizer
+from mmengine.registry import init_default_scope
 
 from config import DET_CHECKPOINT, DET_CONFIG, POSE_CHECKPOINT, POSE_CONFIG
 from mmpose.apis import inference_topdown, init_model
@@ -17,13 +18,16 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("device:", device)
 
 pose_model = init_model(POSE_CONFIG, POSE_CHECKPOINT, device=device)
-det_model = init_detector(DET_CONFIG, DET_CHECKPOINT)
+det_model = init_detector(DET_CONFIG, DET_CHECKPOINT, device=device)
 
 img_path = "examples/img1.jpg"
 img = cv2.imread(img_path)
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 # object detection
+scope = det_model.cfg.get("default_scope", "mmdet")
+if scope is not None:
+    init_default_scope(scope)
 mmdet_results = inference_detector(det_model, img_path)
 
 # visualization
@@ -42,6 +46,9 @@ det_vis.add_datasample(
 person_results = process_mmdet_results(mmdet_results)
 
 # pose estimation
+scope = pose_model.cfg.get("default_scope", "mmpose")
+if scope is not None:
+    init_default_scope(scope)
 mmpose_results = inference_topdown(pose_model, img_path, person_results)
 data_samples = merge_data_samples(mmpose_results)
 """
@@ -58,7 +65,7 @@ pose_vis = PoseLocalVisualizer.get_instance(
 pose_vis.add_datasample(
     name="pose_img1",
     image=img,
-    data_sample=mmpose_results,
+    data_sample=mmpose_results[0],
 )
 
 # URL:
