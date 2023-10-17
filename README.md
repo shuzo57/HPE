@@ -37,7 +37,7 @@ python3 version_check.py
 ## Demo
 ### Download pretrained model
 ```bash
-mim download mmpose --config td-hm_hrnet-w48_8xb32-210e_coco-256x192  --dest hrnet
+mim download mmpose --config td-hm_hrnet-w48_8xb32-210e_coco-256x192 --dest hrnet
 ```
 
 ### Run demo
@@ -48,4 +48,10 @@ python3 mmpose/demo/image_demo.py \
     hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192-0e67c616_20220913.pth \
     --out-file examples/img1_result.jpg \
     --draw-heatmap
+```
+
+## Download RTM model
+```bash
+mim download mmpose --config rtmpose-m_8xb256-420e_coco-256x192 --dest checkpoints
+mim download mmdet --config rtmdet_m_8xb32-300e_coco --dest checkpoints
 ```
