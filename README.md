@@ -50,7 +50,7 @@ python3 mmpose/demo/image_demo.py \
     --draw-heatmap
 ```
 
-## Run Python Script
+### Run Python Script
 ```bash
 Python3 first_demo.py
 ```
@@ -61,7 +61,7 @@ mim download mmpose --config rtmpose-m_8xb256-420e_coco-256x192 --dest checkpoin
 mim download mmdet --config rtmdet_m_8xb32-300e_coco --dest checkpoints
 ```
 
-## Run RTM Python Script
+### Run RTM Python Script
 ```bash
 python3 second_demo.py
 ```
