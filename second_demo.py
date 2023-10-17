@@ -74,9 +74,6 @@ def run(img_path: str):
         data_sample=mmpose_results[0],
     )
 
-    # URL:
-    # https://github.com/open-mmlab/mmpose/blob/main/demo/MMPose_Tutorial.ipynb
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
