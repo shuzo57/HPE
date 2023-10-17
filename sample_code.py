@@ -13,3 +13,4 @@ checkpoint_file = (
 model = init_model(config_file, checkpoint_file, device=device)
 
 results = inference_topdown(model, "examples/img1.jpg")
+print(results)
