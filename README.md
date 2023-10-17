@@ -55,7 +55,8 @@ python3 mmpose/demo/image_demo.py \
 Python3 first_demo.py
 ```
 
-## Download RTM model
+## RTM Demo
+### Download RTM model
 ```bash
 mim download mmpose --config rtmpose-m_8xb256-420e_coco-256x192 --dest checkpoints
 mim download mmdet --config rtmdet_m_8xb32-300e_coco --dest checkpoints
