@@ -9,7 +9,9 @@ def plot_keypoints(
     img: np.ndarray,
     keypoints: np.ndarray,
     bbox: np.ndarray = None,
-    point_color: tuple = (0, 255, 0),
+    point_color: tuple = (128, 128, 128),
+    left_point_color: tuple = (0, 165, 255),
+    right_point_color: tuple = (255, 255, 0),
     point_size: int = 5,
     line_color: tuple = (255, 0, 0),
     linewidth: int = 2,
@@ -35,8 +37,15 @@ def plot_keypoints(
             linewidth,
         )
 
-    for x, y in keypoints:
-        cv2.circle(img, (int(x), int(y)), point_size, point_color, -1)
+    for name, (x, y) in zip(KEYPOINTS_17, keypoints):
+        if name.startswith("LEFT"):
+            cv2.circle(img, (int(x), int(y)), point_size, left_point_color, -1)
+        elif name.startswith("RIGHT"):
+            cv2.circle(
+                img, (int(x), int(y)), point_size, right_point_color, -1
+            )
+        else:
+            cv2.circle(img, (int(x), int(y)), point_size, point_color, -1)
 
     return img
 
