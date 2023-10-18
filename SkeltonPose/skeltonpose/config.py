@@ -1,4 +1,10 @@
-CONNECTIONS_17 = {
+POSITION_FILE: str = "position_data.csv"
+CONFIDENCE_FILE: str = "confidence_data.csv"
+
+DATA_DIR: str = "data"
+IMG_DIR: str = "img"
+
+CONNECTIONS_17: dict = {
     "EYE": ["LEFT_EYE", "RIGHT_EYE"],
     "SHOULDER": ["LEFT_SHOULDER", "RIGHT_SHOULDER"],
     "LEFT_UPPER_ARM": ["LEFT_SHOULDER", "LEFT_ELBOW"],
@@ -14,7 +20,7 @@ CONNECTIONS_17 = {
     "RIGHT_LOWER_LEG": ["RIGHT_KNEE", "RIGHT_ANKLE"],
 }
 
-KEYPOINTS_17 = [
+KEYPOINTS_17: list = [
     "NOSE",
     "LEFT_EYE",
     "RIGHT_EYE",

@@ -42,10 +42,27 @@ class PoseEstimator:
     def get_keypoints(self, mmpose_result: PoseDataSample) -> np.ndarray:
         return mmpose_result.pred_instances.keypoints[0]
 
-    def get_visibles(self, mmpose_result: PoseDataSample) -> np.ndarray:
-        return mmpose_result.pred_instances.visibles[0]
+    def get_keypoint_scores(self, mmpose_result: PoseDataSample) -> np.ndarray:
+        return mmpose_result.pred_instances.keypoint_scores[0]
+
+    def get_img_shape(self, mmpose_result: PoseDataSample) -> tuple:
+        return mmpose_result.img_shape
+
+    def get_keypoints_xyn(self, mmpose_result: PoseDataSample) -> np.ndarray:
+        keypoints = self.get_keypoints(mmpose_result)
+        img_width, img_height = self.get_img_shape(mmpose_result)
+        keypoints_xyn = self._convert_to_xywhn(
+            keypoints, img_width, img_height
+        )
+        return keypoints_xyn
 
     def _read_img(self, img_path: str) -> np.ndarray:
         img = cv2.imread(img_path)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         return img
+
+    def _convert_to_xywhn(self, keypoints, img_width, img_height):
+        normalized_keypoints = keypoints.copy()
+        normalized_keypoints[:, 0] = keypoints[:, 0] / img_width
+        normalized_keypoints[:, 1] = keypoints[:, 1] / img_height
+        return normalized_keypoints

@@ -1,5 +1,9 @@
+import os
+
 import numpy as np
 from mmdet.structures.det_data_sample import DetDataSample
+
+from .config import DATA_DIR, IMG_DIR
 
 
 def process_mmdet_results(
@@ -22,3 +26,18 @@ def process_mmdet_results(
             break
 
     return np.array(class_results)
+
+
+def set_dirctory_structure(input_path: str, output_path: str) -> tuple:
+    input_name = get_input_name(input_path)
+    data_dir = os.path.join(output_path, DATA_DIR, input_name)
+    img_dir = os.path.join(output_path, IMG_DIR, input_name)
+
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(img_dir, exist_ok=True)
+
+    return data_dir, img_dir
+
+
+def get_input_name(input_path: str) -> str:
+    return os.path.splitext(os.path.basename(input_path))[0]
