@@ -1,4 +1,13 @@
 # HPE (Human Pose Estimation) using MMPose
+## Environment (Kitano)
+`version_check.py` で確認できます。
+- Python version: 3.8.18
+- torch version: 1.13.1+cu117 True
+- torchvision version: 0.14.1+cu117
+- mmpose version: 1.2.0
+- cuda version: 11.7
+- compiler information: GCC 9.3
+
 ## Installation
 ### Python 3.8
 ```bash
@@ -51,25 +60,8 @@ python3 mmpose/demo/image_demo.py \
     --draw-heatmap
 ```
 
-```bash
-python3 mmpose/demo/image_demo.py \
-    examples/img2.png \
-    hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192.py \
-    hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192-0e67c616_20220913.pth \
-    --out-file examples/img2_result.jpg \
-    --draw-heatmap
-```
-
-```bash
-python3 mmpose/demo/image_demo.py \
-    examples/img3.jpg \
-    hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192.py \
-    hrnet/td-hm_hrnet-w48_8xb32-210e_coco-256x192-0e67c616_20220913.pth \
-    --out-file examples/img3_result.jpg \
-    --draw-heatmap
-```
-
 ### Run Python Script
+- `first_demo.py` は、姿勢推定（Pose Estimation）のデモプログラムで、指定した画像に対して姿勢推定を行います。プログラムは、OpenMMLabの`mmpose`ライブラリを使用してモデルを初期化し、画像から姿勢情報を抽出し、結果を表示します。デモの目的は、姿勢推定モデルの動作を示すことです。
 ```bash
 Python3 first_demo.py
 ```
@@ -82,10 +74,9 @@ mim download mmdet --config rtmdet_m_8xb32-300e_coco --dest checkpoints
 ```
 
 ### Run RTM Python Script
+- `second_demo.py` は、物体検出と姿勢推定を結合したデモプログラムで、指定した入力画像に対して人物の姿勢を検出し、結果を可視化します。このプログラムは、OpenMMLabの`mmdet`と`mmpose`ライブラリを活用しています。
 ```bash
 python3 second_demo.py -i examples/img1.jpg
-python3 second_demo.py -i examples/img2.png
-python3 second_demo.py -i examples/img3.jpg
 ```
 
 ## MMPose Tutorial
