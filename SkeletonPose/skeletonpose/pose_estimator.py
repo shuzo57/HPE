@@ -45,6 +45,9 @@ class PoseEstimator:
     def get_keypoint_scores(self, mmpose_result: PoseDataSample) -> np.ndarray:
         return mmpose_result.pred_instances.keypoint_scores[0]
 
+    def get_bbox(self, mmpose_result: PoseDataSample) -> np.ndarray:
+        return mmpose_result.pred_instances.bboxes[0]
+
     def get_img_shape(self, mmpose_result: PoseDataSample) -> tuple:
         return mmpose_result.img_shape
 

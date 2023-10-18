@@ -7,15 +7,26 @@ from .config import CONNECTIONS_17, KEYPOINTS_17
 
 def plot_keypoints(
     img: np.ndarray,
-    keypoints_data: np.ndarray,
+    keypoints: np.ndarray,
+    bbox: np.ndarray = None,
     point_color: tuple = (0, 255, 0),
     point_size: int = 5,
     line_color: tuple = (255, 0, 0),
     linewidth: int = 2,
+    box_color: tuple = (0, 0, 255),
 ) -> np.ndarray:
+    if bbox is not None:
+        cv2.rectangle(
+            img,
+            (int(bbox[0]), int(bbox[1])),
+            (int(bbox[2]), int(bbox[3])),
+            box_color,
+            linewidth,
+        )
+
     for start, end in CONNECTIONS_17.values():
-        kp1 = keypoints_data[KEYPOINTS_17.index(start)]
-        kp2 = keypoints_data[KEYPOINTS_17.index(end)]
+        kp1 = keypoints[KEYPOINTS_17.index(start)]
+        kp2 = keypoints[KEYPOINTS_17.index(end)]
         cv2.line(
             img,
             (int(kp1[0]), int(kp1[1])),
@@ -24,7 +35,7 @@ def plot_keypoints(
             linewidth,
         )
 
-    for x, y in keypoints_data:
+    for x, y in keypoints:
         cv2.circle(img, (int(x), int(y)), point_size, point_color, -1)
 
     return img
