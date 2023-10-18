@@ -39,7 +39,7 @@ pip install -r requirements.txt
 pip install -v -e .
 ```
 
-### Excecute Check
+### Install Check
 ```bash
 python3 version_check.py
 ```
