@@ -9,7 +9,7 @@ from .config import DATA_DIR, IMG_DIR
 def process_mmdet_results(
     mmdet_results: DetDataSample,
     class_id: int = 0,
-    class_threshold: float = 0.65,
+    class_threshold: float = 0.50,
 ) -> np.ndarray:
     pred_instances = mmdet_results.pred_instances
 
