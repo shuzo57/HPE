@@ -95,6 +95,7 @@ pip install -e SkeletonPose
 ```
 
 ## Demo
+M model
 ```bash
 python3 -m skeletonpose \
     -i examples/video1.mp4 \
@@ -103,4 +104,15 @@ python3 -m skeletonpose \
     -pck checkpoints/rtmpose-m_simcc-coco_pt-aic-coco_420e-256x192-d8dd5ca4_20230127.pth \
     -dc checkpoints/rtmdet_m_8xb32-300e_coco.py \
     -dck checkpoints/rtmdet_m_8xb32-300e_coco_20220719_112220-229f527c.pth
+```
+
+L model
+```bash
+python3 -m skeletonpose \
+    -i examples/video1.mp4 \
+    -o test \
+    -pc checkpoints/rtmpose-l_8xb256-420e_coco-256x192.py \
+    -pck checkpoints/rtmpose-l_simcc-coco_pt-aic-coco_420e-256x192-1352a4d2_20230127.pth \
+    -dc checkpoints/rtmdet_l_8xb32-300e_coco.py \
+    -dck checkpoints/rtmdet_l_8xb32-300e_coco_20220719_112030-5a0be7c4.pth
 ```
