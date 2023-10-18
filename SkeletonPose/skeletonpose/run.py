@@ -4,7 +4,7 @@ import cv2
 import pandas as pd
 import torch
 from mmdet.apis import init_detector
-from skeltonpose import PoseEstimator
+from skeletonpose import PoseEstimator
 
 from mmpose.apis import init_model
 

@@ -1,3 +1,4 @@
+# HPE (Human Pose Estimation) using MMPose
 ## Installation
 ### Python 3.8
 ```bash
@@ -95,3 +96,20 @@ python3 second_demo.py -i examples/img3.jpg
 - [mmpose](https://mmpose.readthedocs.io/en/latest/)
 - [mmdet](https://mmdetection.readthedocs.io/en/latest/)
 - [Hrnet on AnimalPose](https://mmpose.readthedocs.io/en/latest/model_zoo/animal_2d_keypoint.html#topdown-heatmap-hrnet-on-animalpose)
+
+# SkeletonPose
+## Installation
+```bash
+pip install -e SkeletonPose
+```
+
+## Demo
+```bash
+python3 -m skeletonpose \
+    -i examples/video1.mp4 \
+    -o test \
+    -pc checkpoints/rtmpose-m_8xb256-420e_coco-256x192.py \
+    -pck checkpoints/rtmpose-m_simcc-coco_pt-aic-coco_420e-256x192-d8dd5ca4_20230127.pth \
+    -dc checkpoints/rtmdet_m_8xb32-300e_coco.py \
+    -dck checkpoints/rtmdet_m_8xb32-300e_coco_20220719_112220-229f527c.pth
+```
