@@ -51,10 +51,11 @@ def Run(
         mmpose_results = pe.predict(frame)
         keypoints = pe.get_keypoints(mmpose_results[0])
         bbox = pe.get_bbox(mmpose_results[0])
-        keypoints_xyn = pe.get_keypoints_xyn(mmpose_results[0])
+        # keypoints_xyn = pe.get_keypoints_xyn(mmpose_results[0])
         keypoints_scores = pe.get_keypoint_scores(mmpose_results[0])
 
-        position_df.loc[len(position_df)] = keypoints_xyn.reshape(-1)
+        # position_df.loc[len(position_df)] = keypoints_xyn.reshape(-1)
+        position_df.loc[len(position_df)] = keypoints.reshape(-1)
         confidence_df.loc[len(confidence_df)] = keypoints_scores
 
         drew_keypoints_img = plot_keypoints(frame, keypoints, bbox)

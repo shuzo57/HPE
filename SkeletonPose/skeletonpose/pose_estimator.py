@@ -12,9 +12,10 @@ from .utils import process_mmdet_results
 
 
 class PoseEstimator:
-    def __init__(self, pose_estimator, detecor):
+    def __init__(self, pose_estimator, detecor, class_id=0):
         self.pose_estimator = pose_estimator
         self.detector = detecor
+        self.class_id = class_id
 
     def predict(self, img: Union[str, np.ndarray]) -> list:
         if isinstance(img, str):
@@ -27,7 +28,9 @@ class PoseEstimator:
         mmdet_results = inference_detector(self.detector, img)
 
         # extract person information from detection results
-        person_boxes = process_mmdet_results(mmdet_results)
+        person_boxes = process_mmdet_results(
+            mmdet_results, class_id=self.class_id
+        )
 
         # pose estimation
         scope = self.pose_estimator.cfg.get("default_scope", "mmpose")
