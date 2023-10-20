@@ -1,0 +1,3 @@
+[submodule "SkeletonPose"]
+	path = SkeletonPose
+	url = git@github.com:shuzo57/SkeletonPose.git
