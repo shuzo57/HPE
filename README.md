@@ -116,3 +116,6 @@ python3 -m skeletonpose \
     -dc checkpoints/rtmdet_l_8xb32-300e_coco.py \
     -dck checkpoints/rtmdet_l_8xb32-300e_coco_20220719_112030-5a0be7c4.pth
 ```
+
+## Download SAM(Segment Anything Model)
+SAM: https://github.com/facebookresearch/segment-anything#installation
