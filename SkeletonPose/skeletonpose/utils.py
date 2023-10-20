@@ -39,5 +39,12 @@ def set_dirctory_structure(input_path: str, output_path: str) -> tuple:
     return data_dir, img_dir
 
 
+def get_id_by_name(name: str, categories: dict) -> int:
+    if name in categories:
+        return categories[name]
+    else:
+        raise ValueError(f"Name {name} not found in categories dict.")
+
+
 def get_input_name(input_path: str) -> str:
     return os.path.splitext(os.path.basename(input_path))[0]

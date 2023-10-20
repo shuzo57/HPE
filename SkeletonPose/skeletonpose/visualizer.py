@@ -7,7 +7,7 @@ from .config import CONNECTIONS_17, KEYPOINTS_17
 
 def plot_keypoints(
     img: np.ndarray,
-    keypoints: np.ndarray,
+    keypoints: np.ndarray = None,
     bbox: np.ndarray = None,
     point_color: tuple = (128, 128, 128),
     left_point_color: tuple = (0, 165, 255),
@@ -17,37 +17,51 @@ def plot_keypoints(
     linewidth: int = 2,
     box_color: tuple = (0, 0, 255),
 ) -> np.ndarray:
+    return_img = img.copy()
     if bbox is not None:
         cv2.rectangle(
-            img,
+            return_img,
             (int(bbox[0]), int(bbox[1])),
             (int(bbox[2]), int(bbox[3])),
             box_color,
             linewidth,
         )
 
-    for start, end in CONNECTIONS_17.values():
-        kp1 = keypoints[KEYPOINTS_17.index(start)]
-        kp2 = keypoints[KEYPOINTS_17.index(end)]
-        cv2.line(
-            img,
-            (int(kp1[0]), int(kp1[1])),
-            (int(kp2[0]), int(kp2[1])),
-            line_color,
-            linewidth,
-        )
-
-    for name, (x, y) in zip(KEYPOINTS_17, keypoints):
-        if name.startswith("LEFT"):
-            cv2.circle(img, (int(x), int(y)), point_size, left_point_color, -1)
-        elif name.startswith("RIGHT"):
-            cv2.circle(
-                img, (int(x), int(y)), point_size, right_point_color, -1
+    if keypoints is not None:
+        for start, end in CONNECTIONS_17.values():
+            kp1 = keypoints[KEYPOINTS_17.index(start)]
+            kp2 = keypoints[KEYPOINTS_17.index(end)]
+            cv2.line(
+                return_img,
+                (int(kp1[0]), int(kp1[1])),
+                (int(kp2[0]), int(kp2[1])),
+                line_color,
+                linewidth,
             )
-        else:
-            cv2.circle(img, (int(x), int(y)), point_size, point_color, -1)
 
-    return img
+        for name, (x, y) in zip(KEYPOINTS_17, keypoints):
+            if name.startswith("LEFT"):
+                cv2.circle(
+                    return_img,
+                    (int(x), int(y)),
+                    point_size,
+                    left_point_color,
+                    -1,
+                )
+            elif name.startswith("RIGHT"):
+                cv2.circle(
+                    return_img,
+                    (int(x), int(y)),
+                    point_size,
+                    right_point_color,
+                    -1,
+                )
+            else:
+                cv2.circle(
+                    return_img, (int(x), int(y)), point_size, point_color, -1
+                )
+
+    return return_img
 
 
 def img_show(
